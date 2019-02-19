@@ -1,0 +1,16 @@
+﻿@page
+@model Prism.Views.DiagnosticsModel
+@namespace Prism
+@{
+    var requests = (TrackedRequest[])ViewData["RequestLog"];
+}
+
+<h2>Request Log</h2>
+
+<ul>
+    @for (int i=requests.Length - 1; i >= 0; --i)
+    {
+        var request = requests[i];
+        <li>@request.Order: [@request.Method] @request.Uri : @(request.Response == null ? "Incomplete..." : request.Response.StatusCode.ToString()+" ("+Math.Round(request.Duration.TotalMilliseconds)+")ms")</li>
+    }
+</ul>

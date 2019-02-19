@@ -1,0 +1,11 @@
+# Build log files which may be found in the source tree
+*.log
+*.wrn
+*.err
+*.binlog
+**/obj/*
+**/bin/*
+**.userosscache
+**appsettings.*.json
+**proj.user
+**/.vs/*

@@ -1,6 +1,9 @@
 # prism
 Local opt-in passthru service to unify diagnostics, telemetry, cache control, and more, all under a user's control.
 
+## Status
+This is all test and messy code right now.  I'm warming back up on some different tech and styles, exploring things.  As such, there will be code that isn't fully DI, hardcoded paths to my machine, windows-only and stupid dangerous statics.  As things settle that will all work its way back out.
+
 ## Outlook
 Fiddler is my favorite full-featured system for true and full intercept control, but it can be hard to configure,
 share, deploy anywhere it is needed, and explain. This more fit-for-purpose tool won't have the power of fiddler, but can be a strong

@@ -16,10 +16,11 @@ namespace Prism.Middleware
             _exchangeLog = exchangeLog;
         }
 
-        public async Task Invoke(HttpContext httpContext, UriForwardingTransformer uriTransformer, TrackedRequestAccessor requestLog)
+        public async Task Invoke(HttpContext httpContext, UriForwardingTransformer uriTransformer, TrackedRequestAccessor requestLog, ConnectionInfoFactory connectionFactory)
         {
+            var connection = await connectionFactory.GetConnection();
+            var request = new TrackedRequest(httpContext.Request, uriTransformer, connection);
 
-            var request = new TrackedRequest(httpContext.Request, uriTransformer);
             _exchangeLog.Add(request);
             requestLog.SetRequest(request);
 

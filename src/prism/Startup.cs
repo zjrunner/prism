@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,9 @@ namespace Prism
             services.AddOptions<RequestLogOptions>()
                 .ValidateDataAnnotations();
             services.Configure<RequestLogOptions>(Configuration.GetSection("RequestLog"));
+
+            services.AddHttpContextAccessor();
+            services.AddConnectionInfoFactory();
 
             services.AddSingleton<RequestLog>();
             services.AddSingleton<UriForwardingTransformer>();

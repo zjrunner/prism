@@ -16,8 +16,8 @@ namespace Prism
                 .UseStartup<Startup>()
                 .ConfigureKestrel((context, options) => 
                 {
-//                    options.ListenLocalhost(32774);
                     options.Listen(IPAddress.Loopback, 32774);
+                    options.Listen(IPAddress.Loopback, 32776);
                 });
     }
 }

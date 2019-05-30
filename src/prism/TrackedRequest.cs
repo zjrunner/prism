@@ -26,9 +26,10 @@ namespace Prism
         public Uri Uri { get; }
         public string Method { get; }
         public TimeSpan Duration { get; private set; }
+        public string Session { get; }
         public TrackedResponse Response { get; private set; }
-        
-        public TrackedRequest(HttpRequest request, UriForwardingTransformer uriTransformer)
+
+        public TrackedRequest(HttpRequest request, UriForwardingTransformer uriTransformer, ClientConnectionInfo connection)
             : base(request.Headers)
         {
             Order = Interlocked.Increment(ref _globalOrder);
@@ -36,6 +37,7 @@ namespace Prism
             OriginalUri = new Uri(Microsoft.AspNetCore.Http.Extensions.UriHelper.GetEncodedUrl(request));
             Uri = uriTransformer.GetUriForActualHost(request.Path, request.QueryString.Value);
             Method = request.Method;
+            Session = connection.Session;
         }
 
         public void Complete(TrackedResponse response)

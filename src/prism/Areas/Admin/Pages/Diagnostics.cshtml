@@ -6,11 +6,32 @@
 }
 
 <h2>Request Log</h2>
+<div class="page">
+    <!-- i hate all this.  Need to either go full blazor or full react here -->
+    <div class="panel panel-left">
+        <ul>
+            @{
+                var groups = requests
+                    .GroupBy(r => r.Session, StringComparer.Ordinal)
+                    .Select(g => new { Max = g.Max(r => r.Order), Group = g.ToArray() })
+                    .OrderBy(g => g.Max);
+            }
+            @foreach (var group in groups)
+            {
+                <li>@group.Max (@group.Group.Length)</li>
+            }
+        </ul>
+    </div>
+    <div class="panel panel-right">
+        <ul>
+            @foreach (var request in requests)
+            {
+                <li style="font-size:10px">@request.Order: [@request.Method] @request.Uri : @(request.Response == null ? "Incomplete..." : request.Response.StatusCode.ToString() + " (" + Math.Round(request.Duration.TotalMilliseconds) + ")ms")</li>
+            }
+        </ul>
+    </div>
+</div>
 
-<ul>
-    @for (int i=requests.Length - 1; i >= 0; --i)
-    {
-        var request = requests[i];
-        <li>@request.Order: [@request.Method] @request.Uri : @(request.Response == null ? "Incomplete..." : request.Response.StatusCode.ToString()+" ("+Math.Round(request.Duration.TotalMilliseconds)+")ms")</li>
-    }
-</ul>
+<script>
+
+</script>

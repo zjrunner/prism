@@ -37,3 +37,5 @@ local auth (port matching?) then I'd love to configure cred providers once in th
 #### Logging Automation
 In CI/CD you can live on logs and die on flaky tests/services.  Being able to run the service, route the traffic, and dump the session
 improves the default client experiences.
+#### Tool shimming
+Auth covers most of our usual issues here, but just because nuget is supported doesn't mean all client tools work well.  We've seen problems with chocolatey, powershell, linqpad, and anyone else who uses the protocol.  Again, all I can think of is solved by Auth handling, but you could imagine a client making a poor flow and wanting to do a shim here instead of in the 3rd party tool.

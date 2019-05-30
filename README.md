@@ -25,7 +25,7 @@ to avoid every dev being required to run this tool...for future us.
 A page showing simple network traffic with an emphasis on common problems : auth, proxies, urls, headers
 #### Telemetry
 A page showing telemetry to send - you see and control what can be sent or if it is sent. Client-side telemetry is great for services,
-and if you are having issues/problems it only helps to let some basic telemetry flow usptream
+and if you are having issues/problems it only helps to let some basic telemetry flow usptream. The hook also gives a universal way to tie systems together (working in a build system?  add a header link to the build being run!), classify (update useragent), or more completely track session (use the process sending the request as a key)
 #### Blob download
 Potential smarter blob download with resume or block parallelization. For Azure Devops, potentially act as a chunk cache
 #### Look-aside caching
